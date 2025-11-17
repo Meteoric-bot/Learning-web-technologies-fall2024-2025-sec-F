@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculator</title>
+
+  <style>
+    body {
+      background: #0d1b2a;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .calc {
+      width: 300px;
+      background: #1b263b;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+
+    .display {
+      background: #0d1b2a;
+      padding: 15px;
+      text-align: right;
+      font-size: 32px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      min-height: 50px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    button {
+      background: #415a77;
+      border: none;
+      padding: 15px;
+      font-size: 20px;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background: #778da9;
+    }
+
+    .op {
+      background: #e63946;
+    }
+
+    .equals {
+      grid-column: span 2;
+      background: #2a9d8f;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="calc">
+    <div id="display" class="display">0</div>
+
+    <div class="grid">
+      <button onclick="clearDisplay()">C</button>
+      <button onclick="backspace()">←</button>
+      <button onclick="percent()">%</button>
+      <button class="op" onclick="operator('/')">÷</button>
+
+      <button onclick="digit('7')">7</button>
+      <button onclick="digit('8')">8</button>
+      <button onclick="digit('9')">9</button>
+      <button class="op" onclick="operator('*')">×</button>
+
+      <button onclick="digit('4')">4</button>
+      <button onclick="digit('5')">5</button>
+      <button onclick="digit('6')">6</button>
+      <button class="op" onclick="operator('-')">-</button>
+
+      <button onclick="digit('1')">1</button>
+      <button onclick="digit('2')">2</button>
+      <button onclick="digit('3')">3</button>
+      <button class="op" onclick="operator('+')">+</button>
+
+      <button onclick="digit('0')">0</button>
+      <button onclick="decimal()">.</button>
+      <button class="equals" onclick="calculate()">=</button>
+    </div>
+  </div>
+
+  
+
+</body>
+</html>

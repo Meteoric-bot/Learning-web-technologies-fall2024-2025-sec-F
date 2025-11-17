@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Name Validation</title>
+    
+</head>
+<body>
+    <form id="nameForm" onsubmit="return validateName()">
+        <label for="name">Name</label><br>
+        <input type="text" id="name" name="name"><br>
+        <input type="submit" value="Submit">
+        <p class="error" id="error"></p>
+    </form>
+
+    <script>
+        function validateName() {
+            const name = document.getElementById("name").value.trim();
+            const error = document.getElementById("error");
+            error.textContent = "";
+
+            if (name === "") {
+                error.textContent = "Name cannot be empty.";
+                return false;
+            }
+
+            const words = name.split(/\s+/).filter(word => word !== "");
+            if (words.length < 2) {
+                error.textContent = "Name must contain at least two words.";
+                return false;
+            }
+
+            const firstChar = name.charAt(0);
+            if (!((firstChar >= 'A' && firstChar <= 'Z') || (firstChar >= 'a' && firstChar <= 'z'))) {
+                error.textContent = "Name must start with a letter.";
+                return false;
+            }
+
+            for (let i = 0; i < name.length; i++) {
+                const ch = name.charAt(i);
+                const isLetter = (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z');
+                const isAllowed = isLetter || ch === '.' || ch === '-' || ch === ' ';
+                if (!isAllowed) {
+                    error.textContent = "Invalid character found. Only letters, dots, dashes, and spaces are allowed.";
+                    return false;
+                }
+            }
+
+            alert("Name is valid!");
+            return true;
+        }
+    </script>
+</body>
+</html>
