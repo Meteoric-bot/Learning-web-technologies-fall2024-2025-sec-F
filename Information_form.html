@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Information Form</title>
+</head>
+<body>
+ 
+<input type="text" id="inputBox" placeholder="write here ..">
+
+<p id="errorMsg" style="color:red;"></p>
+ 
+<select id="typeSelect">
+        <option value="">Select catagory</option>
+    <option value="Name">Name</option>
+       <option value="Number">Number</option>
+    <option value="Email">Email</option>
+      <option value="Address">Address</option>
+
+</select>
+ 
+ <button id="addBtn">Add</button>
+    <br><br>
+       <label id="typeLabel"></label>
+ 
+
+<input type="text" id="showBox" readonly>
+ 
+<br><br>
+ 
+     <button id="saveBtn">Save</button>
+ 
+<div id="savedInfo"></div>
+ 
+<script>
+        const inputBox = document.getElementById("inputBox");
+              const typeSelect = document.getElementById("typeSelect");
+          const addBtn = document.getElementById("addBtn");
+       const typeLabel = document.getElementById("typeLabel");
+          const showBox = document.getElementById("showBox");
+    const saveBtn = document.getElementById("saveBtn");
+          const savedInfo = document.getElementById("savedInfo");
+        const errorMsg = document.getElementById("errorMsg");
+ 
+      addBtn.onclick = function () {
+    errorMsg.textContent = "";
+ 
+             if (inputBox.value === "") {
+              errorMsg.textContent = "Please enter some data!";
+               return;
+        }
+ 
+            if (typeSelect.value === "") {
+            errorMsg.textContent = "Please select a type!";
+            return;
+        }
+ 
+            if (typeSelect.value === "Number") {
+            if (isNaN(inputBox.value)) {
+            errorMsg.textContent = "Please enter a valid Number!";
+                return;
+            }
+        }
+ 
+            if (typeSelect.value === "Name") {
+            if (!inputBox.value.match(/^[A-Za-z ]+$/)) {
+                errorMsg.textContent = "Please enter a valid Name!";
+             return;
+            }
+        }
+ 
+            if (typeSelect.value === "Email") {
+            const email = inputBox.value;
+            if (!email.includes("@") || !email.includes(".")) {
+                errorMsg.textContent = "Please enter a valid Email!";
+                return;
+            }
+        }
+ 
+          
+ 
+        typeLabel.textContent = typeSelect.value;
+        showBox.value = inputBox.value;
+    }
+ 
+    saveBtn.onclick = function () {
+        errorMsg.textContent = "";
+ 
+        if (typeLabel.textContent === "" || showBox.value === "") {
+            errorMsg.textContent = "Please add the data first!";
+            return;
+        }
+ 
+        const info = typeLabel.textContent + ": " + showBox.value;
+        const p = document.createElement("p");
+        p.textContent = info;
+        savedInfo.appendChild(p);
+    }
+</script>
+ 
+</body>
+</html>
